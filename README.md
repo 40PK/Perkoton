@@ -1,5 +1,4 @@
 # Perkoton
----
 
 ## About
 Simple VK music player on Eletron.js + React
