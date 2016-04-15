@@ -1,7 +1,6 @@
 var gulp = require( "gulp" );
 var run = require( "gulp-run" );
 var clean = require( "gulp-clean" );
-var react = require( "gulp-react" );
 var sourcemaps = require( "gulp-sourcemaps" );
 var browserify = require( "browserify" );
 var babelify = require('babelify');
@@ -26,17 +25,7 @@ gulp.task( 'browserify', [ "clean" ], function (){
 } );
 
 
-gulp.task( "build:jsx", [ "browserify" ], function (){
-
-	return gulp.src( [ 'browser/*.jsx', 'browser/**/*.jsx' ], { base: "." } )
-			   .pipe( sourcemaps.init() )
-			   .pipe( react() )
-			   .pipe( sourcemaps.write('.') )
-			   .pipe( gulp.dest( "package" ) );
-
-} );
-
-gulp.task( "build:html", [ "build:jsx" ], function (){
+gulp.task( "build:html", [ "browserify" ], function (){
 
 	return gulp.src( [ 'browser/*.html', 'browser/**/*.html' ], { base: "." } )
 			   .pipe( gulp.dest( "package" ) );
