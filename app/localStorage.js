@@ -24,7 +24,7 @@ function save (){
 
 }
 
-exports.setItem = function ( key, value ){
+module.exports.setItem = function ( key, value ){
 
  	load();
  	data[key] = value; 
@@ -32,7 +32,7 @@ exports.setItem = function ( key, value ){
 
 }
 
-exports.getItem = function ( key ){ 
+module.exports.getItem = function ( key ){ 
 
  	load();
  	var value = null;
@@ -44,7 +44,7 @@ exports.getItem = function ( key ){
 
 }
 
-exports.removeItem = function ( key ){ 
+module.exports.removeItem = function ( key ){ 
 
  	load();
  	if (key in data) {
