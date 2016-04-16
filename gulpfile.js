@@ -1,13 +1,12 @@
 var gulp = require( "gulp" );
 var run = require( "gulp-run" );
 var clean = require( "gulp-clean" );
-var browserify = require( "browserify" );
-var babelify = require('babelify');
-var source = require( "vinyl-source-stream" );
 var sass = require('gulp-sass');
 var cleanCSS = require('gulp-clean-css');
 var concatCss = require('gulp-concat-css');
 var prefixer = require('gulp-autoprefixer');
+var babel = require('gulp-babel');
+var react = require('gulp-react');
 
 gulp.task( "clean", function (){
 
@@ -16,19 +15,22 @@ gulp.task( "clean", function (){
 
 });
 
-gulp.task( "browserify", [ "clean" ], function (){
+gulp.task( "build:modules", [ "clean" ], function (){
+	return gulp.src( [ "node_modules/react/**/*.*",
+					   "node_modules/react-dom/**/*.*" ], { base: "." } )
+			   .pipe( gulp.dest( "package" ) );
+});
 
-	var bundler = browserify( "./browser/app.js" )
-					.transform( babelify, { presets: [ "es2015", "react" ] } );
+gulp.task( "build:js", [ "build:modules" ], function(){
+ 	return gulp.src( "browser/**/*.js", { base: "." } )
+ 			   .pipe( react({harmony: false, es6module: true}) )
+ 			   .pipe( babel( {
+					presets: ['es2015']
+				} ) )
+ 			   .pipe( gulp.dest( "package" ) );
+})
 
-	return bundler.bundle()
-		.pipe( source( "app.js" ) )
-		.pipe( gulp.dest( "./package" ) );
-
-} );
-
-
-gulp.task( "build:html", [ "browserify" ], function (){
+gulp.task( "build:html", [ "build:js" ], function (){
 
 	return gulp.src( [ "browser/*.html", "browser/**/*.html" ], { base: "." } )
 			   .pipe( gulp.dest( "package" ) );
@@ -45,6 +47,7 @@ gulp.task( "build:styles", [ "build:html" ], function () {
         .pipe( gulp.dest( "package/browser/" ) );
 
 } );
+
 
 gulp.task( "build", [ "build:styles" ], function (){
 
