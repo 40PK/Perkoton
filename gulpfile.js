@@ -65,6 +65,11 @@ gulp.task( "full", [ "build" ], function (){
 	
 } );
 
+gulp.task( "package", function (){
+
+	return run( "electron-packager ./package Perkoton --platform=darwin --arch=x64 --out ~/Desktop --overwrite" ).exec();
+
+} );
 
 function runApp (){
 
