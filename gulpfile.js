@@ -35,7 +35,7 @@ gulp.task( "build:html", [ "browserify" ], function (){
 
 } );
 
-gulp.task( "build:styles", function () {
+gulp.task( "build:styles", [ "build:html" ], function () {
 
     gulp.src( "browser/styles/*" ) 
         .pipe( sass() )
@@ -46,7 +46,7 @@ gulp.task( "build:styles", function () {
 
 } );
 
-gulp.task( "build", [ "build:html", "build:styles" ], function (){
+gulp.task( "build", [ "build:styles" ], function (){
 
 	return gulp.src( [ "app/**/*", "package.json" ], { base: "." } )
 			   .pipe( gulp.dest( "package" ) );
