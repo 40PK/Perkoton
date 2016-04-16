@@ -1,6 +1,8 @@
 node_modules
 package
 
+app/appConfig.js
+
 .DS_Store
 .AppleDouble
 .LSOverride
