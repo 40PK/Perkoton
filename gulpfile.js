@@ -55,13 +55,19 @@ gulp.task( "build", [ "build:styles" ], function (){
 
 gulp.task( "run", function (){
 
-	return run( "electron ./package" ).exec();
+	return runApp();
 
 } );
 
 gulp.task( "full", [ "build" ], function (){
 
-	return run( "electron ./package" ).exec();
+	return runApp();
 	
 } );
 
+
+function runApp (){
+
+	return run( "electron ./package" ).exec();
+
+}
