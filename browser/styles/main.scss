@@ -1,0 +1,16 @@
+.titlebar-control-group {
+	position: absolute;
+	top: 5px;
+	right: 5px;
+	font-size: 0.85em;
+}
+
+.titlebar-control-button {
+	color: #888;
+	padding: 2px;
+	cursor: pointer;
+
+	&:hover {
+		color: #666;
+	}
+}

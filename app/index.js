@@ -29,6 +29,10 @@ app.on('ready', function () {
 
 });
 
+app.on('window-all-closed', function() {
+  app.quit();
+});
+
 function makeMain (){
 
     mainWindow = new BrowserWindow({
@@ -50,6 +54,9 @@ function makeMain (){
         mainWindow = null;
 
     });
+
+    if ( appConfig.debug )
+        mainWindow.openDevTools();
 
 }
 

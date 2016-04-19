@@ -1,6 +1,16 @@
 import React from "react";
 import ReactDOM from "react-dom";
 
-import Main from "./Main";
+import Player from "./pages/Player";
+import { remote as Remote } from 'electron';
 
-ReactDOM.render(<Main name="John" />, document.getElementById( "container" ));
+let mainStorage = Remote.getGlobal("localStorage");
+
+let container = document.getElementById( "container" );
+
+let userData = mainStorage.getItem( "user" );
+
+ReactDOM.unmountComponentAtNode( container );
+
+ReactDOM.render( <Player/>, container );
+
