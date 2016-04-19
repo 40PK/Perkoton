@@ -1,3 +1,6 @@
+$menu-bg-color: #37474F;
+$menu-width: 200px;
+
 .titlebar-control-group {
 	position: absolute;
 	top: 5px;
@@ -13,4 +16,13 @@
 	&:hover {
 		color: #666;
 	}
+}
+
+.menu-container {
+	position: absolute;
+	left: 0px;
+	top: 0px;
+	bottom: 0px;
+	width: $menu-width;
+	background-color: $menu-bg-color;
 }
