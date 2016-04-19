@@ -7,6 +7,7 @@ var concatCss = require('gulp-concat-css');
 var prefixer = require('gulp-autoprefixer');
 var babel = require('gulp-babel');
 var react = require('gulp-react');
+var gulpUnicode = require('gulp-sass-unicode');
 
 gulp.task( "clean", function (){
 
@@ -39,17 +40,24 @@ gulp.task( "build:html", [ "build:js" ], function (){
 
 gulp.task( "build:styles", [ "build:html" ], function () {
 
-    gulp.src( "browser/styles/*" ) 
+    gulp.src( "browser/styles/**/*.{css,scss}" )
         .pipe( sass() )
+        .pipe( gulpUnicode() )
         .pipe( prefixer() ) 
         .pipe( concatCss( "main.css" ) )
-        .pipe( cleanCSS() )
+        .pipe( cleanCSS( { keepSpecialComments : 0 } ) )
         .pipe( gulp.dest( "package/browser/" ) );
 
 } );
 
+gulp.task( "build:fonts", [ "build:styles" ], function (){
 
-gulp.task( "build", [ "build:styles" ], function (){
+	return gulp.src( [ "browser/fonts/**/*.{eot,svg,ttf,woff,woff2,otf}" ], { base: "." } )
+			   .pipe( gulp.dest( "package" ) );
+
+} );
+
+gulp.task( "build", [ "build:fonts" ], function (){
 
 	return gulp.src( [ "app/**/*", "package.json" ], { base: "." } )
 			   .pipe( gulp.dest( "package" ) );
