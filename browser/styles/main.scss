@@ -1,6 +1,13 @@
 $menu-bg-color: #37474F;
 $menu-width: 200px;
 
+$menu-button-hover: #455A64;
+$menu-button-text-color: #DDD;
+
+body {
+	font-family: 'Roboto', sans-serif;
+}
+
 .titlebar-control-group {
 	position: absolute;
 	top: 5px;
@@ -12,6 +19,7 @@ $menu-width: 200px;
 	color: #888;
 	padding: 2px;
 	cursor: pointer;
+	transition: color .2s linear;
 
 	&:hover {
 		color: #666;
@@ -25,4 +33,17 @@ $menu-width: 200px;
 	bottom: 0px;
 	width: $menu-width;
 	background-color: $menu-bg-color;
+
+	.menu-button {
+		padding: 10px;
+		font-size: 16px;
+		cursor: pointer;
+		background-color: $menu-bg-color;
+		color: $menu-button-text-color;
+		transition: background .2s linear;
+
+		&:hover {
+			background-color: $menu-button-hover;
+		}
+	}
 }
