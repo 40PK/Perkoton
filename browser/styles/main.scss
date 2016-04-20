@@ -38,12 +38,39 @@ body {
 		padding: 10px;
 		font-size: 16px;
 		cursor: pointer;
+		font-weight: 100;
 		background-color: $menu-bg-color;
 		color: $menu-button-text-color;
 		transition: background .2s linear;
 
 		&:hover {
 			background-color: $menu-button-hover;
+		}
+	}
+
+	.menu-mini-profile {
+		padding: 10px;
+		font-size: 16px;
+		cursor: pointer;
+		background-color: $menu-bg-color;
+		color: $menu-button-text-color;
+		transition: background .2s linear;
+
+		&:hover {
+			background-color: $menu-button-hover;
+		}
+
+		.avatar {
+			width: 50px;
+			height: 50px;
+			float: left;
+		}
+
+		.info {
+			padding: 3px;
+			padding-left: 10px;
+			font-weight: 300;
+			display: inline-block;
 		}
 	}
 }
