@@ -1,6 +1,7 @@
 import React from "react";
 
 import MenuButton from "./components/MenuButton";
+import MiniProfile from "./components/MiniProfile";
 
 class MenuContainer extends React.Component {
 
@@ -22,11 +23,12 @@ class MenuContainer extends React.Component {
   		];
 
   		var buttons = menuButtons.map( function( button ) {
-      		return <MenuButton text={button.text} />
+      		return <MenuButton text={button.text} key={button.text} />
     	} );
 
     	return (
   			<div className="menu-container">
+  				<MiniProfile avatar={this.props.avatar} firstName={this.props.firstName} lastName={this.props.lastName}/>
   				{buttons}
   			</div>
   		);
