@@ -12,5 +12,5 @@ let userData = mainStorage.getItem( "user" );
 
 ReactDOM.unmountComponentAtNode( container );
 
-ReactDOM.render( <Player/>, container );
+ReactDOM.render( <Player user_id={userData.user_id} token={userData.token}/>, container );
 
