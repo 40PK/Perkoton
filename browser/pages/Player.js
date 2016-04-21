@@ -3,6 +3,7 @@ import React from "react";
 import TitleBarButtons from "./components/TitleBarButtons";
 
 import MenuContainer from "./MenuContainer";
+import MusicContainer from "./MusicContainer";
 
 import PerkVKApi from "../libs/PerkVKApi";
 import Utils from "../libs/Utils";
@@ -62,7 +63,7 @@ class Player extends React.Component {
   			this.setState( userInfo );
 
   		}
-  		
+
   	}
 
   	render (){
@@ -70,6 +71,7 @@ class Player extends React.Component {
     	return ( 
     		<div>
     			<MenuContainer avatar={this.state.avatar} firstName={this.state.firstName} lastName={this.state.lastName}/>
+    			<MusicContainer/>
     			<TitleBarButtons/>
     		</div>
     	);

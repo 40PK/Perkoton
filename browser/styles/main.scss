@@ -4,6 +4,13 @@ $menu-width: 200px;
 $menu-button-hover: #455A64;
 $menu-button-text-color: #DDD;
 
+$player-main-button-color: #000;
+$player-main-button-color-hover: #000;
+$player-control-button-color: #888;
+$player-control-button-color-hover: #000;
+$player-progress-bg-color: #CFD8DC;
+$player-progress-filled-color: #607D8B;
+
 body {
 	font-family: 'Roboto', sans-serif;
 }
@@ -72,5 +79,82 @@ body {
 			font-weight: 300;
 			display: inline-block;
 		}
+	}
+}
+
+.music-container {
+	position: absolute;
+	left: $menu-width;
+	top: 0;
+	bottom: 0;
+	right: 0;
+
+	.mini-player {
+		position: absolute;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		padding: 10px;
+		height: 30px;
+		line-height: 30px;
+		border-top: solid #EEE 1px;
+
+		.main-group {
+			float: left;
+			margin-right: 10px;
+
+			.player-fast-button {
+				color: $player-main-button-color;
+				transition: color .2s linear;
+				cursor: pointer;
+
+				&:hover {
+					color: $player-main-button-color-hover;
+				}
+			}
+
+			.player-play-button {
+				color: $player-main-button-color;
+				vertical-align: middle;
+				transition: color .2s linear;
+				cursor: pointer;
+
+				&:hover {
+					color: $player-main-button-color-hover;
+				}
+			}
+		}
+
+		.control-group {
+			float: right;
+			margin-left: 10px;
+
+			.player-control-button {
+				color: $player-control-button-color;
+				transition: color .2s linear;
+				cursor: pointer;
+
+				&:hover {
+					color: $player-control-button-color-hover;
+				}
+			}
+		}
+
+		.player-music-progress {
+			height: 10px;
+			overflow: hidden;
+			position: relative;
+			top: 50%;
+			transform: translate( 0, -50% );
+			background: $player-progress-bg-color;
+
+			span {
+				display: block;
+  				height: 100%;
+  				background-color: $player-progress-filled-color;
+  				position: relative;
+			}
+		}
+
 	}
 }
