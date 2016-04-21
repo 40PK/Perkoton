@@ -10,6 +10,8 @@ $player-control-button-color: #888;
 $player-control-button-color-hover: #000;
 $player-progress-bg-color: #CFD8DC;
 $player-progress-filled-color: #607D8B;
+$player-height: 30px;
+$player-bg-color: #FFF;
 
 body {
 	font-family: 'Roboto', sans-serif;
@@ -88,6 +90,15 @@ body {
 	top: 0;
 	bottom: 0;
 	right: 0;
+	background-color: $player-bg-color;
+
+	.music-list {
+		position: absolute;
+		left: 0;
+		right: 0;
+		bottom: $player-height;
+		top: 0;
+	}
 
 	.mini-player {
 		position: absolute;
@@ -95,8 +106,8 @@ body {
 		right: 0;
 		bottom: 0;
 		padding: 10px;
-		height: 30px;
-		line-height: 30px;
+		height: $player-height;
+		line-height: $player-height;
 		border-top: solid #EEE 1px;
 
 		.main-group {
