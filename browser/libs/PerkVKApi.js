@@ -28,7 +28,7 @@ class PerkVKApi {
 		let sendData = [];
 
 		sendData.push( makeParam( "v", v ) );
-		sendData.push( makeParam( "token", this.token ) );
+		sendData.push( makeParam( "access_token", this.token ) );
 
 		for ( let i = 0; i < paramsKeys.length; ++i )
 			sendData.push( makeParam( paramsKeys[i], params[paramsKeys[i]] ) );
