@@ -16,15 +16,15 @@ class Player extends React.Component {
 
 	constructor( props ) {
 
-    	super( props );
+    super( props );
 
-    	this.state = { 
+    this.state = { 
 			avatar: "",
 			firstName: "",
 			lastName: ""
 		};
 
-  	}
+  }
 
   	componentWillMount (){
 
@@ -71,7 +71,7 @@ class Player extends React.Component {
     	return ( 
     		<div>
     			<MenuContainer avatar={this.state.avatar} firstName={this.state.firstName} lastName={this.state.lastName}/>
-    			<MusicContainer/>
+    			<MusicContainer user_id={this.props.user_id} token={this.props.token}/>
     			<TitleBarButtons/>
     		</div>
     	);
