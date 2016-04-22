@@ -7,11 +7,14 @@ var simpleManager = require( "./simpleManager" );
 var session = require( "session" );
 
 global.localStorage = localStorage;
+global.makeMain = makeMain;
+global.makeLogin = makeLogin;
 
 var tokenRegex = /access_token=([^\x26\s]+)/g;
 var userRegex = /user_id=([^\x26\s]+)/g;
 
-var mainWindow, loginWindow;
+var mainWindow = null, 
+    loginWindow = null;
 
 app.on('ready', function () {
 	
