@@ -9,8 +9,11 @@ class MiniPlayer extends React.Component {
       super( props );
 
       this.state = { 
-        play: false
+        play: false,
+        progressbar : 0
       };
+
+      setInterval( this.audioCurrentTimeChange.bind( this ), 1000 );
 
     }
 
@@ -59,6 +62,19 @@ class MiniPlayer extends React.Component {
 
     }
 
+    audioCurrentTimeChange (){
+
+      if ( !this.state.play )
+        return;
+
+      let percent = currentAudio.currentTime * 100 / currentAudio.duration;
+
+      this.replaceState( {
+        progressbar: percent
+      } )
+
+    }
+
   	render (){
     	return (
   			<div className="mini-player">
@@ -76,7 +92,7 @@ class MiniPlayer extends React.Component {
   				</div>
 
   				<div className="player-music-progress">
-  					<span style={{ width: "0%" }}></span>
+  					<span style={{ width: this.state.progressbar+"%" }}></span>
 				</div>
   			</div>
   		);
