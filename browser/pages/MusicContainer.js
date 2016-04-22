@@ -4,12 +4,13 @@ import MiniPlayer from "./components/MiniPlayer";
 import MusicListItem from "./components/MusicListItem";
 
 import PerkVKApi from "../libs/PerkVKApi";
+import APIErrorHandler from "../libs/APIErrorHandler";
 
 let startMusicCount = 10;
 let loadMoreMusicCount = 10;
 let offsetMusic = 0;
 
-let VKApi;
+let VKApi, currentAudio;
 
 class MusicContainer extends React.Component {
 
@@ -35,8 +36,8 @@ class MusicContainer extends React.Component {
 			offset: offsetMusic
 		}, function ( data ){
 
-			if ( data == undefined || data.response == undefined )
-				return;
+			if ( data == undefined || data.error !== undefined )
+				return APIErrorHandler.handle( data.error );
 
 			let musicArray = [];
 
@@ -49,12 +50,9 @@ class MusicContainer extends React.Component {
 				let seconds = duration % 60;
 				seconds = seconds < 10 ? "0" + seconds : seconds;
 
-				musicArray.push( {
-					id: data.response.items[i].id,
-					artist: data.response.items[i].artist,
-					title: data.response.items[i].title,
-					time: `${minutes}:${seconds}`
-				} );
+				data.response.items[i].time = `${minutes}:${seconds}`;
+
+				musicArray.push( data.response.items[i] );
 
 			}
 
@@ -76,8 +74,8 @@ class MusicContainer extends React.Component {
 			offset: offsetMusic
 		}, function ( data ){
 
-			if ( data == undefined || data.response == undefined )
-				return;
+			if ( data == undefined || data.error !== undefined )
+				return APIErrorHandler.handle( data.error );
 
 			let musicArray = scope.state.music;
 
@@ -90,12 +88,9 @@ class MusicContainer extends React.Component {
 				let seconds = duration % 60;
 				seconds = seconds < 10 ? "0" + seconds : seconds;
 
-				musicArray.push( {
-					id: data.response.items[i].id,
-					artist: data.response.items[i].artist,
-					title: data.response.items[i].title,
-					time: `${minutes}:${seconds}`
-				} );
+				data.response.items[i].time = `${minutes}:${seconds}`;
+
+				musicArray.push( data.response.items[i] );
 
 			}
 
@@ -113,10 +108,22 @@ class MusicContainer extends React.Component {
 			this.loadMoreMusic();
 	}
 
+	onMusicItemClick ( music_data ){
+
+		if ( currentAudio !== undefined )
+			currentAudio.pause();
+
+		currentAudio = new Audio( music_data.url );
+		currentAudio.play();
+
+	}
+
   	render (){
 
-  		var musicList = this.state.music.map( function( item ) {
-      		return <MusicListItem author={item.artist} name={item.title} time={item.time} key={item.id}/>
+  		let scope = this;
+
+  		let musicList = this.state.music.map( function( item ) {
+      		return <MusicListItem onClick={scope.onMusicItemClick.bind(this, item)} author={item.artist} name={item.title} time={item.time} key={item.id}/>
     	} );
 
     	return (
