@@ -10,7 +10,7 @@ let startMusicCount = 10;
 let loadMoreMusicCount = 10;
 let offsetMusic = 0;
 
-let VKApi, currentAudio;
+let VKApi;
 
 class MusicContainer extends React.Component {
 
@@ -19,7 +19,8 @@ class MusicContainer extends React.Component {
     	super( props );
 
     	this.state = { 
-			music: []
+			music: [],
+			MiniPlayer: {}
 		};
 
   	}
@@ -108,13 +109,48 @@ class MusicContainer extends React.Component {
 			this.loadMoreMusic();
 	}
 
+	replaceState ( new_state ){
+		let currentState = this.state;
+
+		let newStateKeys = Object.keys( new_state );
+
+		for ( let i = 0; i < newStateKeys.length; ++i )
+			currentState[newStateKeys[i]] = new_state[newStateKeys[i]];
+
+		this.setState( currentState );
+	}
+
 	onMusicItemClick ( music_data ){
 
-		if ( currentAudio !== undefined )
-			currentAudio.pause();
+		this.replaceState({
+			MiniPlayer : music_data
+		});
 
-		currentAudio = new Audio( music_data.url );
-		currentAudio.play();
+	}
+
+	onControlBackClick (){
+		let currentIndex = this.getMusicIndexById( this.state.MiniPlayer.id );
+
+		this.replaceState({
+			MiniPlayer : this.state.music[currentIndex-1]
+		});
+	}
+
+	onControlForClick (){
+		let currentIndex = this.getMusicIndexById( this.state.MiniPlayer.id );
+
+		this.replaceState({
+			MiniPlayer : this.state.music[currentIndex+1]
+		});
+	}
+
+	getMusicIndexById ( id ){
+
+		for ( let i = 0, len = this.state.music.length; i < len; ++i ){
+			if ( this.state.music[i].id == id ){
+				return i;
+			}
+		}
 
 	}
 
@@ -123,7 +159,7 @@ class MusicContainer extends React.Component {
   		let scope = this;
 
   		let musicList = this.state.music.map( function( item ) {
-      		return <MusicListItem onClick={scope.onMusicItemClick.bind(this, item)} author={item.artist} name={item.title} time={item.time} key={item.id}/>
+      		return <MusicListItem onClick={scope.onMusicItemClick.bind( scope, item )} author={item.artist} name={item.title} time={item.time} key={item.id}/>
     	} );
 
     	return (
@@ -131,7 +167,7 @@ class MusicContainer extends React.Component {
   				<div onScroll={this.handleScroll.bind( this )} className="music-list">
   					{musicList}
   				</div>
-  				<MiniPlayer/>
+  				<MiniPlayer onControlBack={this.onControlBackClick.bind( this )} onControlFor={this.onControlForClick.bind( this )} music={this.state.MiniPlayer}/>
   			</div>
   		);
   	}
