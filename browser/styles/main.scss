@@ -13,6 +13,9 @@ $player-progress-filled-color: #607D8B;
 $player-height: 30px;
 $player-bg-color: #FFF;
 
+$music-list-item-bg-color: #FFF;
+$music-list-item-bg-color-hover: #EEE;
+
 body {
 	font-family: 'Roboto', sans-serif;
 	overflow: hidden;
@@ -107,6 +110,13 @@ body {
 			border-top: solid #EEE 1px;
 			font-weight: 300;
 			font-size: 14px;
+			cursor: pointer;
+			background-color: $music-list-item-bg-color;
+			transition: background .2s linear;
+
+			&:hover {
+				background-color: $music-list-item-bg-color-hover;
+			}
 
 			.author {
 				display: inline-block;
