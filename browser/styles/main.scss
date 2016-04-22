@@ -15,6 +15,7 @@ $player-bg-color: #FFF;
 
 body {
 	font-family: 'Roboto', sans-serif;
+	overflow: hidden;
 }
 
 .titlebar-control-group {
@@ -90,14 +91,42 @@ body {
 	top: 0;
 	bottom: 0;
 	right: 0;
-	background-color: $player-bg-color;
 
 	.music-list {
 		position: absolute;
 		left: 0;
 		right: 0;
-		bottom: $player-height;
-		top: 0;
+		bottom: $player-height + 20;
+		top: 25px;
+		overflow: scroll;
+
+		.music-list-item {
+			height: 30px;
+			line-height: 30px;
+			padding: 5px 20px;
+			border-top: solid #EEE 1px;
+			font-weight: 300;
+			font-size: 14px;
+
+			.author {
+				display: inline-block;
+				font-weight: 400;
+			}
+
+			.name {
+				display: inline-block;
+				position: absolute;
+				left: 40%;
+				color: #888;
+			}
+
+			.time {
+				display: inline-block;
+				position: absolute;
+				right: 20px;
+				color: #888;
+			}
+		}
 	}
 
 	.mini-player {
@@ -109,6 +138,7 @@ body {
 		height: $player-height;
 		line-height: $player-height;
 		border-top: solid #EEE 1px;
+		background-color: $player-bg-color;
 
 		.main-group {
 			float: left;
