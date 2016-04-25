@@ -8,6 +8,7 @@ $player-main-button-color: #000;
 $player-main-button-color-hover: #000;
 $player-control-button-color: #888;
 $player-control-button-color-hover: #000;
+$player-control-button-color-activated: #000;
 $player-progress-bg-color: #CFD8DC;
 $player-progress-filled-color: #607D8B;
 $player-height: 30px;
@@ -188,6 +189,10 @@ body {
 				&:hover {
 					color: $player-control-button-color-hover;
 				}
+			}
+
+			.player-control-activated {
+				color: $player-control-button-color-activated !important;
 			}
 		}
 

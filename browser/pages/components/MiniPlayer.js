@@ -1,5 +1,7 @@
 import React from "react";
 
+import Utils from "../../libs/Utils";
+
 let currentAudio;
 
 class MiniPlayer extends React.Component {
@@ -10,7 +12,9 @@ class MiniPlayer extends React.Component {
 
       this.state = { 
         play: false,
-        progressbar : 0
+        progressbar : 0,
+        repeat: false,
+        mute: false
       };
 
       setInterval( this.audioCurrentTimeChange.bind( this ), 1000 );
@@ -36,11 +40,33 @@ class MiniPlayer extends React.Component {
       if ( currentAudio !== undefined )
         currentAudio.pause();
 
+      let scope = this;
+
       currentAudio = new Audio( new_props.music.url );
+      currentAudio.muted = this.state.mute;
       currentAudio.play();
+
+      currentAudio.addEventListener("ended", function(){
+
+        if ( scope.state.repeat ){
+          currentAudio.currentTime = 0;
+          currentAudio.play();
+        } else {
+          scope.props.onControlFor();
+        }
+        
+      });
 
       this.replaceState( {
         play: true
+      } )
+
+    }
+
+    repeatButtonClick (){
+
+      this.replaceState( {
+        repeat: !this.state.repeat
       } )
 
     }
@@ -75,6 +101,34 @@ class MiniPlayer extends React.Component {
 
     }
 
+    onProgressClick ( e ){
+
+      if ( currentAudio === undefined )
+        return;
+
+      let relativePos = Utils.mousePositionElement( e );
+      let progressWidth = e.target.clientWidth;
+
+      let percent = relativePos.x * 100 / progressWidth;
+
+      currentAudio.currentTime = currentAudio.duration * percent / 100;
+
+      this.replaceState( {
+        progressbar: percent
+      } )
+
+    }
+
+    onVolumeClick (){
+      
+      this.replaceState( {
+        mute: !this.state.mute
+      } )
+
+      currentAudio.muted = this.state.mute;
+
+    }
+
   	render (){
     	return (
   			<div className="mini-player">
@@ -86,14 +140,14 @@ class MiniPlayer extends React.Component {
   				</div>
 
   				<div className="control-group">
-  				<i className="player-control-button fa fa-volume-up fa-fw"></i>
-  				<i className="player-control-button fa fa-repeat fa-fw"></i>
-  				<i className="player-control-button fa fa-random fa-fw"></i>
+  				<i onClick={this.onVolumeClick.bind( this )} className={ "player-control-button fa fa-fw " +  ( this.state.mute ? "fa-volume-off" : "fa-volume-up" )}></i>
+  				<i onClick={this.repeatButtonClick.bind( this )} className={ "player-control-button fa fa-repeat fa-fw " +  ( this.state.repeat ? "player-control-activated" : "" )}></i>
+  				{/*<i className="player-control-button fa fa-random fa-fw"></i>*/}
   				</div>
 
-  				<div className="player-music-progress">
+  				<div className="player-music-progress" onClick={this.onProgressClick.bind( this )}>
   					<span style={{ width: this.state.progressbar+"%" }}></span>
-				</div>
+				  </div>
   			</div>
   		);
   	}
