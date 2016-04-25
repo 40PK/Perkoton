@@ -121,8 +121,11 @@ function makeLogin (){
                 user_id : user_id
             } );
 
-            loginWindow.close();
-            makeMain();
+            setImmediate(function() {
+                loginWindow.close();
+                makeMain();
+            });
+            
         }
 
     });

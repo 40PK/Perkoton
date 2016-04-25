@@ -30,7 +30,7 @@ class MiniPlayer extends React.Component {
 
     componentWillReceiveProps ( new_props ){
 
-      if ( new_props.music.url === undefined )
+      if ( new_props.music.url === undefined || new_props.music.id == this.props.music.id )
         return;
 
       if ( currentAudio !== undefined )
