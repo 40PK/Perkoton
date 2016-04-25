@@ -78,7 +78,7 @@ gulp.task( "full", [ "build" ], function (){
 
 gulp.task( "package", function (){
 
-	return run( "electron-packager ./package Perkoton --platform=darwin --arch=x64 --out ~/Desktop --overwrite --icon=./icons/mac.icns" ).exec();
+	return run( "electron-packager ./package Perkoton --platform=darwin --arch=x64 --out ./build --overwrite --icon=./icons/mac.icns" ).exec();
 
 } );
 
