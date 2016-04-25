@@ -10,7 +10,7 @@ class MenuContainer extends React.Component {
   		let menuButtons = [
   			{
   				text: "Мои аудиозаписи"
-  			},
+  			}/*,
   			{
   				text: "Обновления друзей"
   			},
@@ -19,7 +19,7 @@ class MenuContainer extends React.Component {
   			},
   			{
   				text: "Популярное"
-  			}
+  			}*/
   		];
 
   		var buttons = menuButtons.map( function( button ) {

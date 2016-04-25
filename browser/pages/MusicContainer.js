@@ -6,7 +6,7 @@ import MusicListItem from "./components/MusicListItem";
 import PerkVKApi from "../libs/PerkVKApi";
 import APIErrorHandler from "../libs/APIErrorHandler";
 
-let startMusicCount = 10;
+let startMusicCount = 30;
 let loadMoreMusicCount = 10;
 let offsetMusic = 0;
 
