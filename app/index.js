@@ -122,8 +122,8 @@ function makeLogin (){
             } );
 
             setImmediate(function() {
-                loginWindow.close();
                 makeMain();
+                loginWindow.close();
             });
             
         }
