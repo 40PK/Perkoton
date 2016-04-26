@@ -72,7 +72,9 @@ class Player extends React.Component {
     		<div>
     			<MenuContainer avatar={this.state.avatar} firstName={this.state.firstName} lastName={this.state.lastName}/>
     			<MusicContainer user_id={this.props.user_id} token={this.props.token}/>
-    			<TitleBarButtons/>
+          <div className="titlebar-drag-zone">
+    			 <TitleBarButtons/>
+          </div>
     		</div>
     	);
 

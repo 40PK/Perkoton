@@ -1,5 +1,7 @@
 $menu-bg-color: #37474F;
 $menu-width: 200px;
+$menu-mini-width: 70px;
+$menu-break-width: 600px;
 
 $menu-button-hover: #455A64;
 $menu-button-text-color: #DDD;
@@ -22,23 +24,42 @@ body {
 	overflow: hidden;
 }
 
-.titlebar-control-group {
+.titlebar-drag-zone {
 	position: absolute;
-	top: 5px;
-	right: 5px;
-	font-size: 0.85em;
-}
+	left: 0;
+	right: 0;
+	top: 0;
+	left: $menu-width;
+	height: 25px;
+	-webkit-app-region: drag;
+	-webkit-user-select: none;
+	cursor: move;
 
-.titlebar-control-button {
-	color: #888;
-	padding: 2px;
-	cursor: pointer;
-	transition: color .2s linear;
+	@media screen and (max-width: $menu-break-width) {
+    	left: $menu-mini-width;
+  	}
 
-	&:hover {
-		color: #666;
+  	.titlebar-control-group {
+		position: absolute;
+		top: 5px;
+		right: 5px;
+		font-size: 0.85em;
+	}
+
+	.titlebar-control-button {
+		color: #888;
+		padding: 2px;
+		cursor: pointer;
+		transition: color .2s linear;
+		-webkit-app-region: no-drag;
+
+		&:hover {
+			color: #666;
+		}
 	}
 }
+
+
 
 .menu-container {
 	position: absolute;
@@ -48,14 +69,41 @@ body {
 	width: $menu-width;
 	background-color: $menu-bg-color;
 
+	@media screen and (max-width: $menu-break-width) {
+    	width: $menu-mini-width;
+  	}
+
 	.menu-button {
+		background-color: $menu-bg-color;
+		color: $menu-button-text-color;
+		transition: background .2s linear;
 		padding: 10px;
 		font-size: 16px;
 		cursor: pointer;
 		font-weight: 100;
-		background-color: $menu-bg-color;
-		color: $menu-button-text-color;
-		transition: background .2s linear;
+
+		@media screen and (max-width: $menu-break-width) {
+			text-indent: -9999px;
+			padding: 5px;
+			height: 50px;
+
+    		&:before {
+    			content: "\f007";
+    			font: normal normal normal 14px/1 FontAwesome;
+    			font-size: inherit;
+    			width: 1.28571em;
+    			text-rendering: auto;
+    			-webkit-font-smoothing: antialiased;
+    			display: inline-block;
+    			text-align: center;
+    			text-indent: 0;
+    			float: left;
+    			width: 100%;
+    			padding-top: 10px;
+    			font-size: 2.5em;
+    			padding-top: 5px;
+    		}
+  		}
 
 		&:hover {
 			background-color: $menu-button-hover;
@@ -65,6 +113,7 @@ body {
 	.menu-mini-profile {
 		padding: 10px;
 		font-size: 16px;
+		height: 50px;
 		cursor: pointer;
 		background-color: $menu-bg-color;
 		color: $menu-button-text-color;
@@ -85,6 +134,10 @@ body {
 			padding-left: 10px;
 			font-weight: 300;
 			display: inline-block;
+
+			@media screen and (max-width: $menu-break-width) {
+    			display: none;
+  			}
 		}
 	}
 }
@@ -95,6 +148,10 @@ body {
 	top: 0;
 	bottom: 0;
 	right: 0;
+
+	@media screen and (max-width: $menu-break-width) {
+    	left: $menu-mini-width;
+  	}
 
 	.music-list {
 		position: absolute;
@@ -122,13 +179,21 @@ body {
 			.author {
 				display: inline-block;
 				font-weight: 400;
+				overflow:hidden; 
+    			white-space:nowrap; 
+    			text-overflow: ellipsis;
+    			width: 39%;
 			}
 
 			.name {
 				display: inline-block;
 				position: absolute;
 				left: 40%;
+				right: 60px;
 				color: #888;
+				overflow:hidden; 
+    			white-space:nowrap; 
+    			text-overflow: ellipsis;
 			}
 
 			.time {
@@ -210,6 +275,11 @@ body {
   				background-color: $player-progress-filled-color;
   				position: relative;
 			}
+		}
+
+		.player-played-info {
+			position: relative;
+			line-height: 10px;
 		}
 
 	}
