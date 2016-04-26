@@ -145,7 +145,11 @@ class MiniPlayer extends React.Component {
   				{/*<i className="player-control-button fa fa-random fa-fw"></i>*/}
   				</div>
 
-  				<div className="player-music-progress" onClick={this.onProgressClick.bind( this )}>
+          <div className="player-played-info">
+            { ( this.props.music.id !== undefined ) ? this.props.music.artist + " - " + this.props.music.title : "Ничего не воспроизводится" }
+          </div>
+  				
+          <div className="player-music-progress" onClick={this.onProgressClick.bind( this )}>
   					<span style={{ width: this.state.progressbar+"%" }}></span>
 				  </div>
   			</div>
