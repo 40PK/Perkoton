@@ -13,7 +13,7 @@ $player-control-button-color-hover: #000;
 $player-control-button-color-activated: #000;
 $player-progress-bg-color: #CFD8DC;
 $player-progress-filled-color: #607D8B;
-$player-height: 30px;
+$player-height: 32px;
 $player-bg-color: #FFF;
 
 $music-list-item-bg-color: #FFF;
@@ -41,15 +41,17 @@ body {
 
   	.titlebar-control-group {
 		position: absolute;
-		top: 5px;
 		right: 5px;
-		font-size: 0.85em;
+		font-size: 0.75em;
+		line-height: 25px;
 	}
 
 	.titlebar-control-button {
 		color: #888;
 		padding: 2px;
 		cursor: pointer;
+		margin: 1px;
+		vertical-align: middle;
 		transition: color .2s linear;
 		-webkit-app-region: no-drag;
 
@@ -80,7 +82,14 @@ body {
 		padding: 10px;
 		font-size: 16px;
 		cursor: pointer;
-		font-weight: 100;
+
+		&:before {
+			display: none;
+		}
+
+		@media screen and (min-width: $menu-break-width) {
+			font-family: 'Roboto', sans-serif !important;
+		}
 
 		@media screen and (max-width: $menu-break-width) {
 			text-indent: -9999px;
@@ -88,9 +97,7 @@ body {
 			height: 50px;
 
     		&:before {
-    			content: "\f007";
-    			font: normal normal normal 14px/1 FontAwesome;
-    			font-size: inherit;
+       			font-size: inherit;
     			width: 1.28571em;
     			text-rendering: auto;
     			-webkit-font-smoothing: antialiased;
@@ -205,6 +212,10 @@ body {
 		}
 	}
 
+	.full {
+		bottom: 0;
+	}
+
 	.mini-player {
 		position: absolute;
 		left: 0;
@@ -224,6 +235,7 @@ body {
 				color: $player-main-button-color;
 				transition: color .2s linear;
 				cursor: pointer;
+				vertical-align: middle;
 
 				&:hover {
 					color: $player-main-button-color-hover;
@@ -245,11 +257,14 @@ body {
 		.control-group {
 			float: right;
 			margin-left: 10px;
+			height: $player-height;
 
 			.player-control-button {
 				color: $player-control-button-color;
 				transition: color .2s linear;
 				cursor: pointer;
+				margin: 2px;
+				vertical-align: middle;
 
 				&:hover {
 					color: $player-control-button-color-hover;
@@ -285,5 +300,9 @@ body {
     		text-overflow: ellipsis;
 		}
 
+	}
+
+	.hidden {
+		display: none;
 	}
 }

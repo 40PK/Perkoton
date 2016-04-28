@@ -164,12 +164,13 @@ class MusicContainer extends React.Component {
 
     	return (
   			<div className="music-container">
-  				<div onScroll={this.handleScroll.bind( this )} className="music-list">
+  					<div onScroll={this.handleScroll.bind( this )} className={ this.state.MiniPlayer.id === undefined ? "music-list full" : "music-list" }>
   					{musicList}
   				</div>
-  				<MiniPlayer onControlBack={this.onControlBackClick.bind( this )} onControlFor={this.onControlForClick.bind( this )} music={this.state.MiniPlayer}/>
+  				<MiniPlayer hidden={this.state.MiniPlayer.id === undefined} onControlBack={this.onControlBackClick.bind( this )} onControlFor={this.onControlForClick.bind( this )} music={this.state.MiniPlayer}/>
   			</div>
   		);
+    	
   	}
 
 }

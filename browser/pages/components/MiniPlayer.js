@@ -131,17 +131,17 @@ class MiniPlayer extends React.Component {
 
   	render (){
     	return (
-  			<div className="mini-player">
+  			<div className={ this.props.hidden ? "mini-player hidden" : "mini-player"}>
 
   				<div className="main-group">
-  					<i onClick={this.props.onControlBack} className="player-fast-button fa fa-fast-backward fa-fw"></i>
-  					<i onClick={this.playButtonClick.bind( this )} className={ "player-play-button fa fa-fw fa-2x " +  ( this.state.play ? "fa-pause" : "fa-play" ) }></i>
-  					<i onClick={this.props.onControlFor} className="player-fast-button fa fa-fast-forward fa-fw"></i>
+  					<i onClick={this.props.onControlBack} className="player-fast-button icon icon-lg icon-previous2"></i>
+  					<i onClick={this.playButtonClick.bind( this )} className={ "player-play-button icon icon-2x " +  ( this.state.play ? "icon-pause2" : "icon-play3" ) }></i>
+  					<i onClick={this.props.onControlFor} className="player-fast-button icon icon-lg icon-next2"></i>
   				</div>
 
   				<div className="control-group">
-  				<i onClick={this.onVolumeClick.bind( this )} className={ "player-control-button fa fa-fw " +  ( this.state.mute ? "fa-volume-off" : "fa-volume-up" )}></i>
-  				<i onClick={this.repeatButtonClick.bind( this )} className={ "player-control-button fa fa-repeat fa-fw " +  ( this.state.repeat ? "player-control-activated" : "" )}></i>
+  				<i onClick={this.onVolumeClick.bind( this )} className={ "player-control-button icon " +  ( this.state.mute ? "icon-volume-mute2" : "icon-volume-medium" )}></i>
+  				<i onClick={this.repeatButtonClick.bind( this )} className={ "player-control-button icon icon-loop " +  ( this.state.repeat ? "player-control-activated" : "" )}></i>
   				{/*<i className="player-control-button fa fa-random fa-fw"></i>*/}
   				</div>
 

@@ -9,7 +9,8 @@ class MenuContainer extends React.Component {
 
   		let menuButtons = [
   			{
-  				text: "Мои аудиозаписи"
+  				text: "Мои аудиозаписи",
+          icon: "user"
   			}/*,
   			{
   				text: "Обновления друзей"
@@ -23,7 +24,7 @@ class MenuContainer extends React.Component {
   		];
 
   		var buttons = menuButtons.map( function( button ) {
-      		return <MenuButton text={button.text} key={button.text} />
+      		return <MenuButton icon={button.icon} text={button.text} key={button.text} />
     	} );
 
     	return (

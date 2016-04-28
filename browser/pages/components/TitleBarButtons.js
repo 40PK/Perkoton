@@ -20,13 +20,13 @@ class TitleBarButtons extends React.Component {
   render (){
     return (
   		<div className="titlebar-control-group">
-  			<i className="titlebar-control-button fa fa-expand fa-fw" onClick={this.onMaximizeButtonClick}></i>
-    		<i className="titlebar-control-button fa fa-minus fa-fw" onClick={this.onMinimizeButtonClick}></i>
-    		<i className="titlebar-control-button fa fa-times fa-fw" onClick={this.onCloseButtonClick}></i>
+  			<i className="titlebar-control-button icon icon-enlarge" onClick={this.onMaximizeButtonClick}></i>
+    		<i className="titlebar-control-button icon icon-minus" onClick={this.onMinimizeButtonClick}></i>
+    		<i className="titlebar-control-button icon icon-cross" onClick={this.onCloseButtonClick}></i>
   		</div>
   	);
   }
 
 }
-
+ 
 export default TitleBarButtons;
