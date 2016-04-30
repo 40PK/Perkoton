@@ -2,6 +2,8 @@ import React from "react";
 
 import Utils from "../../libs/Utils";
 
+import { remote as Remote } from 'electron';
+
 let currentAudio;
 
 class MiniPlayer extends React.Component {
@@ -9,6 +11,9 @@ class MiniPlayer extends React.Component {
     constructor( props ) {
 
       super( props );
+
+      let scope = this;
+      let gShortcut = Remote.getGlobal("globalShortcut");
 
       this.state = { 
         play: false,
@@ -18,6 +23,18 @@ class MiniPlayer extends React.Component {
       };
 
       setInterval( this.audioCurrentTimeChange.bind( this ), 1000 );
+
+      let playRet = gShortcut.register('MediaPlayPause', function() {
+        scope.playButtonClick();
+      });
+
+      let prevRet = gShortcut.register('MediaPreviousTrack', function() {
+        scope.props.onControlBack();
+      });
+
+      let nextRet = gShortcut.register('MediaNextTrack', function() {
+        scope.props.onControlFor();
+      });
 
     }
 

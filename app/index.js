@@ -5,10 +5,13 @@ var localStorage = require( "./localStorage" );
 var appConfig = require( "./appConfig" ); // you file with vk application app id
 var simpleManager = require( "./simpleManager" );
 var session = require( "session" );
+var electron = require( "electron" );
+var globalShortcut = electron.globalShortcut;
 
 global.localStorage = localStorage;
 global.makeMain = makeMain;
 global.makeLogin = makeLogin;
+global.globalShortcut = globalShortcut;
 
 var tokenRegex = /access_token=([^\x26\s]+)/g;
 var userRegex = /user_id=([^\x26\s]+)/g;
