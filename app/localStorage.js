@@ -1,11 +1,11 @@
-var app = require('app');
-var fs = require('fs');
-var path = require('path');
-var data = null;
-var dataFilePath = path.join(app.getPath('userData'), 'data.json'); 
+const app = require('app');
+const fs = require('fs');
+const path = require('path');
 
-function load (){
+let data = null;
+let dataFilePath = path.join(app.getPath('userData'), 'data.json'); 
 
+function load() {
 	if (data !== null)
  		return;
  
@@ -15,41 +15,32 @@ function load (){
  	}
  
  	data = JSON.parse(fs.readFileSync(dataFilePath, 'utf-8')); 
-
 }
 
-function save (){
-
+function save() {
  	fs.writeFileSync(dataFilePath, JSON.stringify(data)); 
-
 }
 
-module.exports.setItem = function ( key, value ){
-
+module.exports.setItem = function(key, value) {
  	load();
  	data[key] = value; 
  	save();
-
 }
 
-module.exports.getItem = function ( key ){ 
-
+module.exports.getItem = function(key) { 
  	load();
- 	var value = null;
+	let value = null;
 
  	if (key in data)
  		value = data[key];
 
  	return value;
-
 }
 
-module.exports.removeItem = function ( key ){ 
-
+module.exports.removeItem = function(key) { 
  	load();
  	if (key in data) {
  		delete data[key];
  		save();
  	}
-
 }

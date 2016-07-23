@@ -1,16 +1,16 @@
-import React from "react";
-import ReactDOM from "react-dom";
+const React = require('react');
+const ReactDOM = require('react-dom');
 
-import Player from "./pages/Player";
-import { remote as Remote } from 'electron';
+const Player = require('./pages/Player');
+const Remote = require('electron').remote;
 
-let mainStorage = Remote.getGlobal("localStorage");
+let mainStorage = Remote.getGlobal('localStorage');
 
-let container = document.getElementById( "container" );
+let container = document.getElementById('container');
 
-let userData = mainStorage.getItem( "user" );
+let userData = mainStorage.getItem('user');
 
-ReactDOM.unmountComponentAtNode( container );
+ReactDOM.unmountComponentAtNode(container);
 
-ReactDOM.render( <Player user_id={userData.user_id} token={userData.token}/>, container );
+ReactDOM.render(<Player user_id={userData.user_id} token={userData.token}/>, container);
 

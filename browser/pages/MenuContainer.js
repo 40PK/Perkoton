@@ -1,40 +1,37 @@
-import React from "react";
+const React = require('react');
 
-import MenuButton from "./components/MenuButton";
-import MiniProfile from "./components/MiniProfile";
+const MenuButton = require('./components/MenuButton');
+const MiniProfile = require('./components/MiniProfile');
 
 class MenuContainer extends React.Component {
+  render (){
+  	let menuButtons = [
+  		{
+  			text: 'Мои аудиозаписи',
+        icon: 'user'
+  		}/*,
+  		{
+  			text: 'Обновления друзей'
+  		},
+  		{
+  			text: 'Рекомендации'
+  		},
+  		{
+  			text: 'Популярное'
+  		}*/
+  	];
 
-  	render (){
+  	var buttons = menuButtons.map((button) => {
+     	return <MenuButton icon={button.icon} text={button.text} key={button.text}/>
+    });
 
-  		let menuButtons = [
-  			{
-  				text: "Мои аудиозаписи",
-          icon: "user"
-  			}/*,
-  			{
-  				text: "Обновления друзей"
-  			},
-  			{
-  				text: "Рекомендации"
-  			},
-  			{
-  				text: "Популярное"
-  			}*/
-  		];
-
-  		var buttons = menuButtons.map( function( button ) {
-      		return <MenuButton icon={button.icon} text={button.text} key={button.text} />
-    	} );
-
-    	return (
-  			<div className="menu-container">
-  				<MiniProfile avatar={this.props.avatar} firstName={this.props.firstName} lastName={this.props.lastName}/>
-  				{buttons}
-  			</div>
-  		);
-  	}
-
+    return (
+  		<div className='menu-container'>
+  			<MiniProfile avatar={this.props.avatar} firstName={this.props.firstName} lastName={this.props.lastName}/>
+  			{buttons}
+  		</div>
+  	);
+  }
 }
 
-export default MenuContainer;
+module.exports = MenuContainer;

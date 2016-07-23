@@ -1,17 +1,15 @@
-import React from "react";
+const React = require('react');
 
 class MusicListItem extends React.Component {
-
-  	render (){
-    	return (
-  			<div onClick={this.props.onClick} className="music-list-item">
-  				<div className="author">{this.props.author}</div>
-  				<div className="name">{this.props.name}</div>
-  				<div className="time">{this.props.time}</div>
-  			</div>
-  		);
-  	}
-
+  render (){
+    return (
+  		<div onClick={this.props.onClick} className='music-list-item'>
+  			<div className='author'>{this.props.author}</div>
+  			<div className='name'>{this.props.name}</div>
+  			<div className='time'>{this.props.time}</div>
+  		</div>
+  	);
+  }
 }
 
-export default MusicListItem;
+module.exports = MusicListItem;
